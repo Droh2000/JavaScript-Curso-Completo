@@ -1,0 +1,19 @@
+
+
+En esta aplicacion vamos a consumir un API de una pagina
+ 
+Vamos a hacer una peticion HTTP para traernos informacion y mostrarla en la aplicacion
+
+Los agrupamos por modulos por responsabilidad
+    src/TodoLoRelacionado a la API
+Esto tendra mas sentido cuando tengamos diferentes API que consumir
+
+Uso de Postman
+- Click en el boton de +
+- Seleccionamos el HTTP (GET)
+- En el API documentacion veremos como acceder a la base de la URL (Pegamos en Postman)
+- En la documentacion Buscamos la accion a realizar (Obtener informacion)
+- Pegamos la URL en la URL que ya teniamos en postman
+- Click en Send (En una letras de color verde veremos las milisemisas de segundos que tarda en obtener la respuesta (ms))
+    Este tiempo es lo que nos hace implementar una respuesta asyncrona y mostrar el Loading al usuario
+- Nos debe regresar un JSON

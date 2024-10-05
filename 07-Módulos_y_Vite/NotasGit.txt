@@ -1,0 +1,55 @@
+
+Controlador de Versiones GIT + GitHub
+
+Esto nos sirve para codificar en equipo y asi unir las partes de codigo que los demas construyan
+como para nosotros al tener versiones mas viejas
+- Se Descarga git de la pagina oficial
+- En la terminal: git --version
+(Configuramos nuestro nombre)
+- git config --global user.name "nuestro Nombre"
+(Configuramos nuestro email)
+- git config --global user.email 'NuestoEmail'
+(Configuracion de colores para la ayuda en la terminal)
+- git config --global color.ui auto
+(En github creamos un nuevo repositorio)
+En el archivo '.gitignore' estan todos los archivo de nuestro proyecto que NO se subiran al ser inesesario
+(En la termina de VS code)
+- git init (Preparamos nuestro proyecto para subir)
+- git add . (Subir todo de golpe PEro en modo Foto)
+- git commit -m "Mensaje del Comit"
+    (Para Recontruir el proyecto en el ultimo Comit que hicimos): git checkout -- .
+- git remote add origin http:/RutaDelProyecto de github
+Para cambiar de la rama MASTER a MAIN: git branch -M main
+- git push -u origin main (Establecer por defecto los archivos en lo principal)
+(Despues de eso nos pedira que nos autentiquemos en github)
+
+Realizar nuevos cambios en el proyecto
+Despues de hacer los cambios en nuestro proyecto:
+- git add .
+- git commit -m "El porque del cambio"
+- git push (Como ya hicimos el -u origin, con solo el push va a subir todo)
+
+(Para ver en la rama en la que estamos trabajando: git branch)
+Jamas debemos trabajar en la MAIN ya que aqui se pone el codigo listo para produccion
+Cuando estemos haciendo CAMBIOS se recomienda crear nuevas ramas y despues se una todo
+
+En el proyecto del BlackJack se renombro la carpeta 'Dist' a 'Docs'
+esta carpeta contiene la version final del proyecto
+Despues de hacer ese cambio vemos que nos salio el nombre de colo verde
+esto es porque se espra que hagamos otro comit para mandar los cambios a github
+    - Si no tenemos esta carpeta de produccion se tiene que ejecutar los cmabios:
+        * npm run build
+
+Queremos ejecutar nuestro proyecto en una pagina en github
+- Tenemos que tener el proyecto publico porque si es privado debemos pagar
+- Se hace todo un proceso que puede durar algo de tiempo
+- Si lo hacemos por defecto NOS daran muchos errores
+- Para evitar los errores tenemos que crear en el proyecto de VS code
+    un nuevo archivo en la raiz de este: vite-config.js
+    Asi gracias a VIte hara cambios en el proyecto automaticamente y nos evitaremos los errores
+    de los cambios de las URL y llamada a otros directorios
+Esto es para hacer un Depolment de nuestra aplicacion    
+
+
+
+

@@ -1,0 +1,83 @@
+
+
+    El backend server nos va a dar los API Resfull Endpoint para hacer un CRUD
+    (El mismo backend sera el que grabe en base de datos y haga todo el procedimiento)
+
+    Nada de lo creado hace Actualizar la pagina, todo los cambios se muestran en la aplicacion al instante
+    como toda aplicacion moderna
+
+NPM JSON Server -> Para crear un servidor que nos ofrece un Restfull Api completo (Esto lo colocaremos en nuetro proyecto)
+db.json -> Es un archivo donde tenemos usuario para cargar en la Base de datos
+            Aqui esta cambiado intencionalmente el formato de los campos que son "first_name" y "last_name" cuando en el API nos
+            los regresa con CamelCase "firstName" y "lastName", esto se hace para ver como hacer las transformaciones de Data
+            aplicando ciertos Mappers o ciertas estrategias para que no nos afecte si el backend en un futuro cambia el formato de los campos
+            asi nosotros facilmente podramos mantener la aplicacion sin realizar muchos cambios en nuestro codigo fuente
+
+Vamos a agurapar esto en diferentes directorios (Modulos)
+
+Dentro de package.json
+    Tenemos las dependencias de desarrollo (devDependencies)
+    que cuando pasemos a produccion no requerimos tener esto instaldo
+    Entonces pasamos ahi JSON SERVER
+        - npm i json-server --save-dev
+
+En la carpeta principal del proyecto creamos la carpeta "server"
+que esto va a ser nuestro backend, dentro pasamos el "db.json" donde tenemos la informacion con los usuarios
+    Tambien le sacamos una copia a este archivo porque cuando estemos probando el CRUD vamos a modificar este archivo
+    y como seguridad mantenemos los datos originales
+
+Uso del JSON Server
+
+    Dentro de Package.json creamos dentro de "scripts" creamos uno nuevo que va a usar el Json Server
+        - "server": "json-server server/db.json --port 3001" -> (Le especificamos el nombre dle paquete y la ruta donde esta la base de datos y le especificamos un puerto para evitar conflictos)
+    Ejecutamos el script definido
+        - npm run server (Con esto ya tenemos el Restfull API endpoint completo para hacer peticiones a esto) -> Aqui estamos ejecutando el proceso y siempre lo debemos arrancar asi para empezar a manipularlo
+            Esto lo podemos probar con PostMan
+                - http://localhost:3001/users
+                - http://localhost:3001/users?_page=1 (Asi es para paginar el backend y regresarnos solo los datos de 10 en 10)
+                - http://localhost:3001/users/1 (Obtener la informacion de un usuario en particular)
+
+Debemos de saber de forma global en que pagina nos encontramos y cuales son los usuarios de esa pagina porque asi vamos a poder
+construir una tabla basada en los usuarios que tenemos en esa pagina, entonces vamos a poder crear un Stored actualizado con esos datos
+
+Entonces Dejamos lo del tema anterior en la carpeta "SRC" pero vamos a crear uno nuevo llamado "Users" para manejar el modulo y dentro creamos las siguientes carpetas
+    - Mappers: Aqui vamos a tomar la informacion que esta de una manera y la pasemos a otra, esto es porque nuestros datos tiene cambios en los atirbutos
+                "first_name" y "last_name"
+    - Presentation: Aqui vamos a poner las funciones que van a servir para mostrarselas al usuario (Los componentes con CSS, JS y HTML) 
+    - Models: Esta es una representacion de como queremos trabajar la aplicacion y no importa que el backend regrese nombres diferentes, la aplicacion va a trabajar
+                con los modelos y eso va a hacer que sea mas robusta y tolerantes a cambios
+                Aqui esta el como manejamos la informacion en nuestra aplicacion
+    - Store: Este va a ser el lugar centralizado de informacion
+    - Use-Cases: Donde vamos a tener funciones especificas para una tarea en especifico (Obtener, actualizar, crear, eliminar)
+
+Dentro de Store creamos "users-store.js"
+
+Cargar los usuarios que cuando comenzemos a cargar la aplicacion podemos pedir que nos carge la siguiente pagina
+esta va a hacer una solicitud a un caso de uso el cual va a cargar los usuairos por la pagina que le solicitemos
+Asi que creemos dentro de "Use-Cases" creamos "load-users-by-pages.js" (Aqui aprovechamos para crear una variable de entorno
+para la URL del endopint)
+
+Dentro de la carpeta "users" creamos el archivo "users-app.js"
+
+El hecho de tener la carpeta Presentation que contiene cada uno de los componentes, este es un patron muy similar a como
+lo vamos a ver la mayoria de frameworks y librerias, solo que estos siguen cierto estandar para trabajar y esto facilita las cosas
+porque tenemos que tener la referencia de nuestro objetos para saber en donde queremos renderizar las cosas
+
+El chiste de hacer esto es seguir con este patron tratando de mantenter un codigo limpio con archivos independientes que hagan una tarea en especifico
+
+La idea del Store en "users-store.js" no es algo estandar que todas las aplicacion de JS utilizan esto
+aunque si no vamos a otras aplicacion con otros frameworks y librerias nos podemos tomar con este concepto
+la idea de este archivo es que tengamos centralizada todo nuestros datos y formas de trabajar con los datos
+y si otro componente requiere piezas de informacion en lugar pasarselas con Callbacks o Promesas mejor vamos al Stored
+y lo extraemos.
+
+Ademas como implementar una aplicacion en Puro JS vanilla es complicado para eso es que existen mucho frameworks
+    - Angular
+    - React
+    - Vue.js
+    - Svelte
+    - Solid JS
+
+    Todos funcionan de manera similar pero si tienen sus cosas diferentes
+
+

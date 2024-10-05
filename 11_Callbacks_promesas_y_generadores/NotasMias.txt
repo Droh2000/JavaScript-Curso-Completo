@@ -1,0 +1,58 @@
+Este proyecto se creo con Vite -> Vanilla -> JS
+
+Variables de Entorno
+
+Son variables que dependiendo de donde se este ejecutando la aplicacion
+tiene un valor distinto, ejemplo si estamos de manera local las variables
+apuntan al LocalHost pero en produccion cambiamos eso a una URL 
+
+Existe el paquete DotEnv porque el estandar es que las variables esten en
+un archivo .env para leer este archivo pero como estamos en VITE ya no
+nesecitamos esta libreria, el uso de estas variables las tenemos en el archivo
+.env.template que es una copia del archivo .env para identificar que variables trabajar
+porque este archivo no se sube a github.
+
+Para Usar estas variables:
+SRC -> concepts -> 01-enviorentments.js y su implementacion en main.js
+
+CallBacks
+
+Esta es una funcion que recibe como argumento otra funcion y se invoca esa funcion
+Para este ejemplo vamos a usar el JS de la carpeta DATA
+Tambein vemos los manejos de errores en los callbacks
+
+Se tiene que evitar el Callback Hell que es cuando tenemos muchos callbacks que internamnete llaman otros callbacks
+que internamente llaman otro callbacks y asi de manera muy grande (Que tengamos muchos anidados dentro uno de otro)
+
+
+Promesas
+
+Estos son la mejora y estan remplazando a los Callbacks
+Es un acuerdo entro dos partes y atra vez de la cual una de ellas se compromete a realizar algo ante el 
+cumplimiento de una condicion o el vencimiento de un plazo 
+(Es como cuando nos comprometemos a realizar algo y le vamos a habisar a la personas que le hicimos la promesa cuando terminamos la tarea o no lo logramos) 
+
+Promise Race
+Esto es util cuando tenemos varias promesas y solo queremos el resultado de la primera promesa o de la
+promesa que se resolvio mas rapido 
+
+Esto nos puede servir para diferentes endpoint que van a buscar informacion o tengamos algo duplica en la nube
+y traemos el que se resuelva mas rapido de acuerdo a su ubicacion
+
+ASYNC
+
+El async nos transforma la funcion para que en lugar de que sea un objeto, nos va a regresar una promesa
+que resuelve la tarea, estas funciones no siguen el hilo principal del programa como Linea a Linea
+Es decir si ponemos la funcion asincrona entre dos lineas de codigo, primero se ejecutan las dos lineas y al ultimo la funcion
+(Hay que recordar que las funciones en JS siempre regresan undefined, esto por si queremos poner un Return solo para terminar la ejecucion)
+
+AWAIT
+No se puede usar la palarba Await en funciones que no son asincronas
+PROMESAS NO SECUENCIALES
+Es donde el valor no dependen a que se termine otro mas adelante, esto es para el caso de tener varias promesas y las queremos ejecutar todas
+
+FOR AWAIT y IF AWAIT
+
+Funciones generadoras (function*)
+Nos generan una secuencia de valores en la cual podemos utilizar para diferentes casos
+

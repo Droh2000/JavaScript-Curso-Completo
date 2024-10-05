@@ -1,0 +1,25 @@
+<!--
+     Esta es la venta modal que se muestra al hacer clic en el boton "+" encima de la aplicacion
+     para empoezar a registrar nuevos usuarios
+
+     Esto lo creamos en otro archivo y no dentro de un archivo JS porque como ya es mas codigo es
+     mas dificil de mantener, leer y es mejor aca
+-->
+<div class="modal-dialog">
+    <form novalidate>
+        <span>User</span>
+        <input type="text" name="firstName" placeholder="First Name" />
+        <input type="text" name="lastName" placeholder="Last Name" />
+        <input type="number" name="balance" placeholder="Balance" />
+
+        <div>
+            <input type="checkbox" id="is-active" name="isActive" checked/>
+            <label for="is-active">is active?</label>
+        </div>
+
+        <button type="submit">
+            Save
+        </button>
+
+    </form>
+</div>

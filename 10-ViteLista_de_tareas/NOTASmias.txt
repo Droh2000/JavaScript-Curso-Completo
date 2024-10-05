@@ -1,0 +1,80 @@
+Para Crear el proyecto (Comandos):
+    - Abrir la terminal de Windows
+    - cd /RutaDondeTenemosLosProyectosDeJavaScript/
+    - En la pagina de Vite.dev en la pestana Getting Starter
+        - Nos salen los comando para manejarlos con diferentes paquetes De ahi sacamos el comando de abajo
+    - npm create vite@lastes (Para que use la ultima version de Vite)    
+    - y
+    - Nombre del proyecto
+    - Vanilla
+    - JavaScript
+    - npm i (instalar las dependencias)
+    - code . (Para abrir VsCode)
+    - npm run dev (Ejecutar el proyecto por defecto)
+    (Borramos todo el codigo del Main.js y solo dejamos el import del CSS)
+    Borramos el counter.js
+    Se cambio el titulo del index.html (En el id=app es donde se rendderiza toda la aplicacion)
+    Borramos el logo de JS .svg
+    Se borro todo lo del CSS
+
+Se copio todo el codigo del CSS de Github
+Creamos la carpeta SRC y dentro creamos las carpetas:
+    - Stored (Donde vamos a tener de manera global nuestros datos)
+    - todos (Aqui va estar todo lo que hace la aplicacion)
+        Dentro esta todo el codigo de la aplicacion
+En app.html se copio el codigo de Github para tener el Cascaron base de la aplicacion        
+
+STORE:
+    El sentido del desarrollo de esta aplicacion es seguir con este formato Store
+    para que el caso que nuestros componentes requieran informacion en lugar de ir con
+    el padre (Es el HTML donde esta todo el codigo) colocamos la informacion relevante
+    en un espacio llamado stored que se actualiza constantemente 
+        - Creamos dentro de la carpeta todos otra carpeta llamada "Models"
+        - Dentro de esta nueva creamos 'todo.models.js'
+        (Despues de codificar el TODO creamos el siguiente archivo)
+        - En la carpta store creamos el "todo.store.js"
+    - El initStore se manda a llamar en el Main.js
+    (TODO ESTO SE HACE para cuando nuestros componentes como las funciones de la aplicacion
+    requieran informacion de nuestro Store es decir datos del TODO tiene que venir al 'todo.store.js' y consultarlo)
+
+Instalar UUID para tener identificadores unicos para los TODOS:
+    - npm i uuid
+
+Para Renderizar los TODOS en el HTML creamos:
+    - La carpeta use-cases (Estas carpetas se crean para las funciones independientes que realizen un trabajo en particular)
+    - Dentro de creo el index.js (Este es el archivo barril donde tenemos todas las importaciones)    
+    - Nuestra fucnion para renderizar los TODOS se crea el archivo: remder-todos.js
+
+LOCAL STORAGE:
+Para que al Darle check o eliminar un TODO queremo que al recargar la pagina se
+mantenga ese mismo estado de la pagina y no se reinicie para eso en la consola del navegador
+en la parte de '>>' nos vamos a 'Aplication' y en Storage tenemos 
+    - 'Local Storage': Es persistene a lo largo que viva la aplicacion (Si esta en el mismo HOST estaran los mismo DAtos)
+    - 'Sesion Storage' Lo que pasa aqui es que al cerrar la aplicacion se perdera todo los datos
+Funcionan igual solo que por defecto se llama al Sesion Storage, en esto dos se manda
+es para guardar pares de valores, el VALUE siempre debe ser un STRING 
+(En nuestro caso nuestro EStado es un objerto compuesto que son todas las instancias de los TODO)
+    - 'Cookies': Es lo mismo que el Local Storage pero tenemos mucho menor espacio para guardar DAtos
+        porque estas automaticamente viajan con las peticiones HTTP de los servidores
+        que se usa como en las tiendas que almacenan lo que buscan sus usuarios para mostrarle mas contenido relacionado con lo qe buscan
+
+En la carpeta Store:
+    Es donde tenemos el acceso a los datos de nuestra aplicacion
+    Podrian haber algunas optimicaciones:
+        - Por ejemplo en el objeto "stored" de 'todo.store.js'
+            Podriamos hacer un objeto que sea reactivo usando RXJS
+            donde cada vez que este objeto cambie emita un valor para que 
+            pueda ser usando con funciones generadoras y asi esto sea un ESTADO reactivo
+
+Estado Reactivo:
+    Nos permitira que en lugar de estar mandando a llamar en 'app.js' las funciones
+    'renderPending()' y 'displayTodos()' muchas veses simplementes nos podriamso crear una funcion
+    que este escuchando cualquier cambio que tenga ese estado (todo.stored.js) y que cualquier cambio
+    que tenga el Stored dispare la funcion
+
+Todo esto lo escibimos nosotros pero en la vida real se utilizan Frameworks o librerias
+para que el codigo sea mas limpio u ordenado y sigua los estandares de los desarrolladores
+y NO hacerlo con Vanilla JS porque se hace de muchas formas segun como cada quien progamer
+al trabajar con FRameworks nos obligamos a trabajar de una forma y asi es mejor que en un equipo
+sea mas entendible el codigo
+

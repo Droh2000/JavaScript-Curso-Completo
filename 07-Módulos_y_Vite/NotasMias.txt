@@ -1,0 +1,185 @@
+
+Al dia de hoy se trabaja con aplicaciones que pueden correr en multiples plataformas
+
+El estandar del ES6 (Incluyo nuevas caracteristicas) es el nuevo estandar soportado por la mayoria de los navegadores
+al ser un etandar no le pertenece a un navegador web
+todos los navegadores tienen que respetar ese estandar pero
+ese estandar puede tener ciertos cambios entre los navegadores web
+(Este problema ya no ocurre si estamos trabajando con el ES6)
+
+Pero que pasa con los estandares nuevos?
+Pasaron muchos anios para la actializacion del 2015 y lo que se esta haciendo
+hoy en dia es ir actualizando anualmente y el estandar se actualiza con anios
+pero los navegadores van leto aceptando estas nuevas actualizaciones
+
+Por ejemplo al implementar las nuevas implmentacions de JS
+Eso dependera del navegador web que puede estar actualizado para soportar
+esto o puede que no lo entienda y tire un errores
+
+Eso quiere decir que al estar en el anio actual no deberiamos
+empezar a implementar lo nuevo de JS porque la mayoria
+de los navegadores no lo soportaran, el problema es que los navegadores
+se actualizaran lentamente para cada ES
+
+Nos pudiera pasar que nos veamos obligados a crear una aplicaciones
+con estandares muy viejos de JS, podriamos tartar de evitar
+caracteristicas nuevas  o buscar muchas otras formas
+pero para existe los llamado BUNDLERS (Empaquetadores).
+
+Los BUNDLERS nos ayudan a desarollar una aplicacion de javaSript
+moderna (modulos, separando archivos, usar direntes tipos de tecnologias)
+lo que hacen los boundlers es tomar codigo original, transformarlo
+y despues optimizarlo para que esten listo para generar el build de produccion
+
+Tambien hay otros pasos extras que podemos hacer como pasarlos archivos
+por 'Baggel' que nos permite escribir codigo actual de JS
+y transformarlo a cualquier version que nosotros queramos de JS
+
+Los Bundlers nos permiter poder trabajar con versiones modernos de JS
+sin que nos tengamos preocupar si queremos agregar mas archivos o mas personas trabajen en el proyecto
+
+Un Boundler muy popular pero que ya esta pasado es 'Webpack'
+las personas lo estan dejando porque la velocidad que da para generar codigo
+es muy lenta
+
+El cambio ahora es 'Vite' haciendo lo mismo que hace el otro pero mas rapido
+El verdadero susesor de 'WebPack' es 'TurboPack' que todabia esta en beta
+algunas comparaciones indican que es mucho mas rapido este lo usa otro framework Next.js
+
+Nosotros vamos a usar 'Vite' (Necitamos tener instalado el NodeJS)
+    - (En la terminal): npm create vite
+    - Le ponemos un nombre cualquiera
+    - En este caso seleccionamos 'vanilla' que es usar JS sin ningun framework
+        - Esta el JS normal (Este seleccionamos)
+        - El otro es TypeScript
+    - La carpeta que nos genero es el contenido de '7-Modulos y vite'    
+    (Para que Jale la APP Abierto el proyecto nos vamos al a terminal de VS CODE)
+    - npm i (Este descarga los paquetes de las dependencias de 'Vite')1
+        - Las 'devDependencies' son las dependencias necesarias para la construcccion de la aplicacion
+        - Las 'dependencies' ya construida la app, nuestro codigo solo usara estas llamadas las dependencias de produccion
+        Tenemos diferentes archivos 
+            - package.json: Tenemos una descripcion de nuestra aplicacion
+                tenemos unos scripts que es lo que estamos usando y abajo las
+                dependencias
+                'Vite': Nos ayuda a trabajar nuestra aplicacion con diferentes herramientas
+                para automatizar procesos
+        Despues de ejecutar el comando de 'npm i' Salieron otros archivos
+        - 'Package-lock.json:' Este archivo nunca lo vamos a tocar manualmente
+            solo dice como fueron construidos los modulos de NodeJS
+        - LA carpeta 'node-modules': hay muchas dependencias y esto lo que usa VITE par funcionar
+           y aqui estan las dependencias que vamos a usar en 'dependencies' para construir
+           la aplicacion final, este procedimiento de construccion de conoce como 'BUILd'
+            QUE ES PARA CREAR LA APLICACION LISTA PARA PRODUCCION CON EL CODIGO LISTO PARA CORRER EN UN SERVIDOR YA OPTMIZADO
+    - npm run dev: Con este comando le decimos corra de los 'Scripts' dev
+        (DEspues de esto podemos abrir la URL en el Localhost)
+        La magia de esto es que con cualquier cambio al diseno, programacion o Css con guardar los cambios y regresar
+        al navegadro veremos los cambios aplicados, esto cambia los modulos en caliente
+        En la consola del navegador podremo var los camnbios que realizo 'Vite'
+        Cuando vemos un 'Package.json' es enralidad un archivo de NodeJS
+    - npm run build: esto nos generara el build de produccion 
+        Despues de este comando nos saldra la carpeta "Dist" con 3 archivos dentro
+        Si nos metemos a los archivos JS o CSS vemos que automaticmane nos  minimiza el codigo
+        comprimiendo todo el codigo en una sola linea
+        Los numeros que salen al lado del nombre del archivo son para que los archivos sean alamaceados en el navegador
+        como cache y asi ahorrarnos en la carga y si ademas modificamos algo un de los archivos y ejecutamos el comando
+        este numero cambiara (Solo lo que esta en la carpeta Dist es lo que se mandara a un entorno real no lo demas)
+
+Convertir el proyecto de blackJack a Vite
+Trabajar con vite a un proyecto ya creado
+- Abrimos la terminal
+- Cd /Directorio de la carpeta donde estan los proyecto en GENERAL de JS/
+- npm create vite
+    - y
+    - Damos un nombre al proyecto
+    - vanilla
+- cd /carpeta nombre del proyecto/    
+- npm install
+- npm run dev
+(Creamos el proyecto de VITE)
+- Ahora de nuestro poryecto de BlackJack
+- Copiamos la carpeta de 'asset' al directorio raiz de este con vite
+- El estilo que teniamos los copiamos y pegamos al 'style.css' que se nos genero
+- Eliminamos el estilo que venia con Blackjack
+- Borramos lo de underscore-min.js
+- Copiamos el contenido de nuestro JS (Borramos toda la carpeta JS)
+- Pegamos en el main.js dejando el import del css
+- Abrimos nuestro index.html
+- Empezamos a copiar y pegar las partes necesarias en el index.html del proyecto vite
+- Copiamos los estilos de bootstrap como URL
+- Los de NPM underscore (En la pagina copiamos el comando y lo ejecutamos en la tarminal de VS code)
+- npm i underscore (En package.json en las 'dependencies' debe salir este paquete nuevo)
+- En main.js hacemos la importacion: 'import _ from 'underscore' ' con el _ tomamos todo el paquete
+
+Si ejecutamos el coomando para que nos cree el build de produccion por defecto no nos tomara en cuenta la carpeta
+'assets' que es donde estan las imagenes, para que vite nos tome en cuenta cualquier archivo externo que use nuestra aplicacion
+tenemos que crear en el directorio raiz del proyecto un nueva carpeta llamda 'public'
+y ahi movemos toda nuestra carpeta 'asset', a todos estos archivos no se les creara los numeros HASEH
+al lado del nombre porque estos serian archivos que no van a cambiar
+
+(Dividir todo el codigo en varios archivos o modulos que es como se trabaja en la vida real)
+Vamos a factorizar nuestro codigo
+- Creamos una nueva carpeta en el directorio raiz llamada 'src'
+- Creamos dentro la carpeta 'blackjack' 
+- Dentro creamos el 'index.js' (Aqui vamos a pegar todo el codigo que tengamos en el main.js)
+- En el main.js borramos todo menos el import del css
+- En el main importamos el modulo del index.js que creamos como: import './src/blackjack/index.js'
+    ponerle index.js es opcional ya que por defecto lo detecta: './src/blackjack'
+- Dentro de la carpeta backjack creamos una carpeta llamda 'usecase'    
+- Dentro de esa nueva carpeta vamos a crear cada uno de los modulos de la aplicacion
+- La funcion 'crearDeck()' la movemos al nuevo modulo 'crear-deck.js'
+    dentro de la funcion cambiamos para que ahora la reciba como parametros de la funcion a las variables que se estan usando
+    * Como aqui estamos aplicando al modulo underscore lo importamos 'import _ from 'underscore'';
+    * Hay dos formas de Importar esta nuevo modulo en el index.js:
+        - De forma individual 'import {crearDeck} from "./usecases/crear-deck" ' Dentro del modulo al inicio de la funcion le ponemos 'export'
+            En el index.js cuando se manda a llamar la funcion le pasamos las varaibles necesarias
+            [En este punto nos dira que 'deck no esta definido' ya que lo usamos dentro de la funcion y JS no lo puede encontrar en el SCCOPE de esto modulo]
+            En ese caso dentro de la funcion creamos la variable 'let deck = []' ya que este esta de manera global en el index.js
+            Despues en el index.js igualamos la variable a los que nos retorna la funcion que seria la misma variable actualizada 'deck = crearDeck(tipos,especiales);'
+        - Exportacion por defecto: Al final del modulo fuera de la funcion ponemos
+            "export default crearDeck;" (Podemos combinar esta con la exportacion individual)
+            En el index.js la importacion seria: import ELnombreQueSeNosDeLaGana from "./usecases/crear-deck"
+            ese nombre es el que se usa al mandar a llamar la funcion
+
+Las EXPORTACIONES se pueden dar de las siguiente formas:
+    - import {NombreFuncion,NombreOtro,...} from './Ruta/' (Se separa entre las llaves con comas para cada 'export' que tenga el modulo)
+    - import {NombreFuncion as Alias} from "./usecases/crear-deck" ' (Para darle un alias a los exportado)
+    - import ExportacionDefecto, {ExportacionIndividual} from "./usecases/crear-deck" (Cuando tengamos combinados ambas formas de exportar en el modulo)
+
+(Mejorar la documentacion de nuestros modulos)
+Vamos a agregar informacion para que otros programadores y al mandar a llamar la funcion
+no salga informacion como el tipo de dato que deben ser los parametros y lo que nos retorna la funcion
+- Se agrego el IF para verificar que el usuario al mandar a llamar la funcion le salga un errores
+- Se le agrego /** + ENTER Con esto es la documentacion de los parametros y retorno de la funcion
+    Ejemplo: array<string>
+En el index.js le pasamos los parametros a la funcion 'crearDeck()'
+
+Crear modulos para las funciones: 'pedirCarta()' y 'valorCarta()'
+estos estan en la carpeta 'useCases' con la documentacion de JSDoc y las validaciones con IF
+Hay que remplazar las funciones en el index.js con los nuevos modulos
+
+Archivos de barril
+Para ahorrarnos el hecho de tener tantos IMPORTS en nuestro JS principal
+para esto creamos en la carpeta 'usecases' un nuevo arrchivo 'index.js'
+cortamos todas los IMPORT a este nuevo archivo y cambiamos las palabra IMPORT
+por Export (Dentro del string de la importacion hay que quitar la carpeta 'usecases'
+porque ya nos encontramos dentro en ese directorio) y asi ahora en el
+index.js PRINCIAPAL quitamos todos los Imports por el unico import {crearDick,pedirCarta,valorCarta} from './usecases'
+
+Crear Modulo para turnoComputadora
+- Tenemos que importar los modulos de los que depende como pedirCarta
+- los parametros que pide la funcion
+- La documentacion con /** */
+- Las verificaciones con el IF
+- Si hay variables que solo se usan aqui se pueden quitar del index y poner dentro del modulo
+- En esta funcion requerimos la llamada all DOOM del html porlo que se agrego como parametro (Puntos HTML)
+    Lo mismo para DivCartas
+- Se agrega el EXPORT del nuevo modulo en el Archivo Barril   
+- Se agrega en el Import del index.js principal
+- Se remplaza el modulo en donde estaba la funcion
+
+Se creo el modulo 'crear-carta-html.js' porque se estaba copiando y pegando el mismo codigo
+
+
+
+     
+
